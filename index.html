@@ -10,6 +10,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
             font-family: "Microsoft YaHei", Arial, sans-serif;
             line-height: 1.8;
@@ -19,6 +20,7 @@
             max-width: 900px;
             margin: 0 auto;
         }
+        
         h1 {
             color: #2c3e50;
             text-align: center;
@@ -27,6 +29,7 @@
             border-bottom: 2px solid #667;
             padding-bottom: 10px;
         }
+        
         h2 {
             color: #34495e;
             margin: 40px 0 15px 0;
@@ -35,16 +38,21 @@
             padding: 8px 12px;
             border-left: 4px solid #3498db;
         }
+        
         p {
             margin: 15px 0;
             font-size: 16px;
+            word-break: break-word;
         }
+        
         ul {
             margin: 15px 25px;
         }
+        
         li {
             margin: 8px 0;
         }
+        
         .case {
             background: #fff;
             padding: 15px;
@@ -52,10 +60,12 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.08);
         }
+        
         .warn {
             color: #e74c3c;
             font-weight: bold;
         }
+        
         .quote {
             font-style: italic;
             color: #27ae60;
@@ -63,19 +73,190 @@
             text-align: center;
             font-size: 18px;
         }
+        
         .img-box {
             text-align: center;
             margin: 30px 0;
         }
+        
         .img-box img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            display: block;
         }
+        
         .divider {
             border-top: 1px dashed #ccc;
             margin: 30px 0;
+        }
+        
+        /* Flexible image container for side-by-side layouts */
+        .flex-images {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .flex-images img {
+            flex: 1;
+            min-width: 280px;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Links styling */
+        a {
+            color: #3498db;
+            text-decoration: none;
+            word-break: break-word;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* ===== TABLET BREAKPOINT (768px and below) ===== */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+                font-size: 15px;
+            }
+            
+            h1 {
+                font-size: 22px;
+                margin: 20px 0;
+            }
+            
+            h2 {
+                font-size: 18px;
+                margin: 30px 0 12px 0;
+                padding: 6px 10px;
+            }
+            
+            p {
+                font-size: 15px;
+                margin: 12px 0;
+            }
+            
+            ul {
+                margin: 12px 20px;
+            }
+            
+            li {
+                margin: 6px 0;
+                font-size: 15px;
+            }
+            
+            .case {
+                padding: 12px;
+                margin: 10px 0;
+            }
+            
+            .quote {
+                font-size: 16px;
+                margin: 15px 0;
+            }
+            
+            .img-box {
+                margin: 20px 0;
+            }
+            
+            .divider {
+                margin: 20px 0;
+            }
+            
+            /* Stack flex layouts vertically */
+            .flex-images {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .flex-images img {
+                min-width: 100%;
+            }
+        }
+        
+        /* ===== MOBILE BREAKPOINT (480px and below) ===== */
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            h1 {
+                font-size: 20px;
+                margin: 15px 0;
+                padding-bottom: 8px;
+            }
+            
+            h2 {
+                font-size: 16px;
+                margin: 20px 0 10px 0;
+                padding: 5px 8px;
+            }
+            
+            p {
+                font-size: 14px;
+                margin: 10px 0;
+                line-height: 1.6;
+            }
+            
+            ul {
+                margin: 10px 15px;
+                padding-left: 20px;
+            }
+            
+            li {
+                margin: 5px 0;
+                font-size: 14px;
+            }
+            
+            .case {
+                padding: 10px;
+                margin: 8px 0;
+                border-radius: 6px;
+            }
+            
+            .quote {
+                font-size: 15px;
+                margin: 12px 0;
+            }
+            
+            .img-box {
+                margin: 15px 0;
+            }
+            
+            .divider {
+                margin: 15px 0;
+            }
+            
+            .flex-images {
+                gap: 15px;
+            }
+            
+            /* Inline styles override for mobile */
+            .img-box[style*="text-align: left"] {
+                text-align: center !important;
+            }
+        }
+        
+        /* ===== LARGE DESKTOP (1200px and above) ===== */
+        @media (min-width: 1200px) {
+            body {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
@@ -93,98 +274,93 @@
     <li>尋找人生意義与内在力量</li>
 </ul>
 
-<div class="img-box" style="text-align: left;">
-    <img src="images/01earphone.jpg" >
+<div class="img-box">
+    <img src="images/01earphone.jpg" alt="耳机图1">
 </div>
 
-<div class="img-box" style="text-align: left;">
-    <img src="images/02earphone.jpg" >
+<div class="img-box">
+    <img src="images/02earphone.jpg" alt="耳机图2">
 </div>
 
 <div class="divider"></div>
 
-<p>催眠冥想是 “放鬆 + 高度专注” 的特殊意识状态（不是睡着），你全程保持意识与自主控制，<br>
+<p>催眠冥想是 "放鬆 + 高度专注" 的特殊意识状态（不是睡着），你全程保持意识与自主控制，<br>
 被动跟随引导，更易進入深层放松、触达深层潜意识。</p>
 
 <p><b style="color:red;">被催眠者在極度放鬆下，説话音量会變得極低，請一定、千萬、務必讓麥克風擺在嘴巴附近。</b><br>
 視頻通話時，鏡頭必須清楚看得見你的全臉及雙手。</p>
 
-<div class="img-box" style="text-align: left;">
-    <img src="images/03earphone.jpg" >
+<div class="img-box">
+    <img src="images/03earphone.jpg" alt="耳机图3">
 </div>
 
 <div class="divider"></div>
 
-<p>在日常生活中，左脑担任着理性逻辑与质疑批判的角色，并且随着情绪起伏而波动不定；<br>
+<p>在日常生活中，左脑担任着理性逻辑与质疑批  的角色，并且随着情绪起伏而波动不定；<br>
 而右脑所蕴含的纯真直觉，却一直被左脑的过度理性所压制。</p>
 
 <p>久而久之，你渐渐忽略了右脑（潜意识）的声音，也遗失了内在的本真感知。</p>
 
 <p>催眠的目的，正是引导你的左脑慢慢安静下来，卸下过度的分析防禦，<br>
-使被压抑的右脑智慧自然显现，让你重新连接内在的力量、認識多維度的真我。</p>
+  被压抑的右脑智慧自然显现，让你重新连接内在的力量、認識多維度的真我。</p>
 
-<div class="img-box" style="text-align: left;">
-    <img src="images/04brains.jpg" >
+<div class="img-box">
+    <img src="images/04brains.jpg" alt="左右脑图">
 </div>
 
 <div class="divider"></div>
-
 
 <p class="quote" style="text-align: left;">Nikola Tesla 说，宇宙的一切都是 能量、频率、震动。</p>
 
-<div class="img-box" style="text-align: left;">
-    <img src="images/05NikolaTesla.jpg" >
+<div class="img-box">
+    <img src="images/05NikolaTesla.jpg" alt="尼古拉特斯拉">
 </div>
 
 <div class="divider"></div>
-
 
 <p>你的脑波、你的意图，都是能量頻率信號；<br>
 你潜意识里的每一个念头，都会被身体的每一个细胞默默聆听、如实回应。</p>
 
-<div style="display: flex; gap: 60px;">
-  <img src="images/06waves.gif" style="width: 420px;">
-  <img src="images/07bodyUniverse.jpg" style="width: 400px;">
+<div class="flex-images">
+  <img src="images/06waves.gif" alt="能量波">
+  <img src="images/07bodyUniverse.jpg" alt="身体宇宙">
 </div>
 
 <div class="divider"></div>
 
-
 <p>小孩不想上学时，跟妈妈说发烧头疼了，他的体温就真的高起来了。<br>
-醫生開維他命給你，你以爲是藥，結果你好起來了。 </p>
+醫生開維他命給你，你以爲是藥，結果你的病好起來了。 </p>
 
 <p>你的身体是一个宇宙，而你，就是这个宇宙的神。<br>
 你身体的每一个细胞都深爱着你，無条件地对你唯命是從。</p>
 
-<div style="display: flex; gap: 40px;">
-  <img src="images/08fever.jpg" style="width: 300px;">
-  <img src="images/09placebo.jpg" style="width: 400px;">
+<div class="flex-images">
+  <img src="images/08fever.jpg" alt="发烧">
+  <img src="images/09placebo.jpg" alt="安慰剂效应">
 </div>
 
 <div class="divider"></div>
 
-
 <p>有一位妻子，与丈夫早已形同陌路。<br>
-当她被确诊癌症后，在心理咨询中发现了一个真相——她的潜意识里，其实不愿这个病痛消失。<br>
+当她被确诊癌症后，在心理咨询中发现了一个真相——她的潜意识里，其实不愿这个病症消失。<br>
 因为只有在生病后，丈夫才会放下隔阂，陪她去看医生、與她開口说话，<br>
-這份久违的互動，成了她潜意识里不愿放手的“温暖”。</p>
+這份久违的互動，成了她潜意识里不愿放手的"温暖"。</p>
 
-<div class="img-box" style="text-align: left;">
-    <img src="images/10constellation.png" >
+<div class="img-box">
+    <img src="images/10constellation.png" alt="星座">
 </div>
 
-<p>而这份 ”潜意识“ 的想法，与她的 “意识” 完全相悖。<br>
+<p>而这份 "潜意识" 的想法，与她的 "意识" 完全相悖。<br>
 当被点破时，她的意识瞬间崩溃，<br>
-疯狂破口大骂：“神经病啊！哪有人会不想康复的！！！！”</p>
+疯狂破口大骂："神经病啊！哪有人会不想康复的！！！！"</p>
 
 <p><strong>你知道 你潜意识里 真正的想法吗？</strong></p>
-
 
 <div class="divider"></div>
 
 <h2>我的服务 · 一次性 深度 身心靈疗愈，无需套餐、无需多次多日疗程</h2>
 <ul>
-    <li>先進行 1~2 小时的 “電腦屏幕” 面對面深度访谈：了解你希望解开的困扰、心结、与疑惑</li>
+    <li>先進行 1~2 小时的 "電腦屏幕" 面對面深度访谈：了解你希望解开的困扰、心结、与疑惑</li>
     <li>開展 1~2 小時的催眠引导：進入潜意识状态，開啓内在智慧，探尋问題根源與答案</li>
     <li>总结與交流：整合收穫，清晰后续方向</li>
 </ul>
@@ -196,7 +372,6 @@
 静静感受内心泛起的情绪，试着描述你的直观感受與观察。<br>
 先在心里记住这份感觉，再继续往下看，看看你属于下面三种个案中的哪一种。</p>
 
-<!-- 老屋测试图：自动命名 + 自动路径 -->
 <div class="img-box">
     <img src="images/11old_house.jpg" alt="老屋催眠测试图">
 </div>
@@ -253,14 +428,14 @@
 
 <div class="divider"></div>
 
-<h2>我們是合作夥伴 · 需要你的全心投入 </h2>
+<h2>我們是合作夥伴 · 需要你的全心投入</h2>
  
 <p>就像健身房教練與學員的關係：學員必須願意按照教練指引，主動完成訓練。<br> 
 教練要求做10下俯臥撐，學員就要認真投入、確實執行。 <br>
-如果自身不願行動，就算教練再專業，也無法幫你達成健身目標。 </p>
+如果自身不願行動，就算教練再專業，也無法幫你達成健身目標。</p>
 
-<div class="img-box" style="text-align: left;">
-    <img src="images/12trainer.jpg" >
+<div class="img-box">
+    <img src="images/12trainer.jpg" alt="健身教练">
 </div>
 
 <p>同理，催眠師在引導個案時，也需要個案充分配合、全心放鬆。<br> 
@@ -271,15 +446,15 @@
 <p>也不要過度期待，好像孩子趴在牆邊，眼巴巴等著熱鬧有趣的事情發生。 <br>
 若果如此，你的左腦即處於持續興奮的狀態，很難真正安靜下來。</p>
 
-<div class="img-box" style="text-align: left;">
-    <img src="images/13expecting.jpg" >
+<div class="img-box">
+    <img src="images/13expecting.jpg" alt="期待">
 </div>
 
 <div class="divider"></div>
 
 <h2>关于我 · 催眠冥想引导师</h2>
 <ul>
-    <li>QHHT 量子催眠疗愈二级 （<a href="https://members.qhhtofficial.com/members/shu-chen-yuan-2-2/"  target="_blank">QHHT official website</a>）</li>
+    <li>QHHT 量子催眠疗愈二级 （<a href="https://members.qhhtofficial.com/members/shu-chen-yuan-2-2/" target="_blank">QHHT official website</a>）</li>
     <li>BQH （Beyond Quantum Healing）：可进行线上催眠的量子疗愈 (<a href="https://quantumhealers.com/practitioner/quantum-healer-in-china/" target="_blank">BQH official website</a>)</li>
     <li>Mike Mandel 学院：習得 Milton Erickson 核心原则、与 Dave Elman 等的直接原则</li>
 </ul>
@@ -292,8 +467,7 @@
 <p>预约日期的3天前取消，退 CNY1,222</p>
 <p>预约日期当天前取消，仅退 CNY222</p>
 
-<!-- 企业微信二维码：自动命名 + 自动路径 -->
-<div class="img-box" style="text-align: left;">
+<div class="img-box">
     <img src="images/14qrcode.jpg" alt="企业微信预约二维码">
 </div>
 
@@ -311,7 +485,7 @@
 
 <p><strong>环境：</strong></p>
 <ul>
-    <li>请安排一个安静、连续4小时不被打扰的空间</li>
+    <li>请安排一个安静、连续4小时以上不被打扰的空间</li>
     <li>穿着宽松舒适的衣物、不化妆</li>
     <li>不要吃得过饱、避免剧烈运动</li>
     <li>最好不要喝咖啡、喝茶、或吃药物</li>
@@ -324,7 +498,7 @@
 <h2>聯係我 · 预约专属疗愈</h2>
 
 <p><a href="https://work.weixin.qq.com/ca/cawcde2795517738e9" target="_blank">添加我为微信好友</a></p>
-    電子郵件 scy_quantum@outlook.com
+<p>電子郵件：<a href="mailto:scy_quantum@outlook.com">scy_quantum@outlook.com</a></p>
 
 </body>
 </html>
