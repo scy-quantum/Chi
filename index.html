@@ -276,6 +276,32 @@
         }
     </style>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>手机视频播放</title>
+  <style>
+    /* 全局重置，避免样式冲突导致视频隐藏 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      padding: 10px; /* 给视频留边，避免贴边被遮挡 */
+    }
+    /* 强制视频容器显示，优先级最高 */
+    #chromium-video {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      width: 100% !important;
+      min-height: 200px !important; /* 强制最小高度，避免空白 */
+      height: auto !important;
+      z-index: 9999 !important;
+      pointer-events: auto !important;
+      background: #000; /* 黑色背景，能看到播放器边界 */
+      border: 1px solid #ccc; /* 加边框，确认视频区域 */
+    }
+  </style>
     
 </head>
 <body>
@@ -456,9 +482,9 @@
 <div class="divider"></div>
     
 <ul style="list-style-type: none;">
-<li><span style="color:blue">✔</span> 若你是 個案3 的状態，非常適合進行催眠冥想。</li>
+<li><span style="color:blue">✔</span> 若你是 個案3 的状態，聲音、嗅覺、或情緒感受非常靈敏，則完全適合進行催眠。</li>
 <li><span style="color:blue">✔</span> 個案2 的朋友，只要能保持放鬆、讓左脑意識歸于平静，同樣可進入状態。</li>
-<li><span style="color:blue">✔</span> 而 個案1 的状态，則相對較難進入催眠所需的 θ (希塔) 脑波意识层面；可先自己練習靜心與腹式呼吸。</li>
+<li><span style="color:blue">✔</span> 而 個案1 的状態，則相對較難進入催眠所需的 θ (希塔) 脑波意识层面；可先自行練習靜心與腹式呼吸。</li>
 </ul>
 
 <div class="divider"></div>
@@ -543,62 +569,61 @@
 
 <div class="img-box">
 
-<!-- 核心：用 jsDelivr 加速 GitHub 视频（绕过加载限制）+ 适配 Chromium 内核 -->
 <video 
-  id="chromium-video"
-  src="https://cdn.jsdelivr.net/gh/scy-quantum/Chi/slits_Chi.mp4"  <!-- 替换成加速链接 -->
-  controls
-  playsinline
-  webkit-playsinline
-  muted
-  preload="auto"
-  width="100%"
-  style="
-    max-width: 100%;
-    height: auto;
-    display: block;
-    z-index: 9999 !important;
-    pointer-events: auto !important;
-    background: #000;
-  "
->
-  您的浏览器不支持视频播放
-</video>
+    id="chromium-video"
+    src="https://cdn.jsdelivr.net/gh/scy-quantum/Chi/slits_Chi.mp4"
+    controls
+    playsinline
+    webkit-playsinline
+    x5-playsinline
+    muted
+    preload="auto"
+  >
+    您的浏览器不支持视频播放
+  </video>
 
-<!-- 针对 Chromium 内核的强制加载脚本 -->
-<script>
-  // 等待页面完全加载
-  document.addEventListener('DOMContentLoaded', function() {
-    const video = document.getElementById('chromium-video');
-    
-    // 强制重置视频加载状态（修复 Chromium 内核的缓存拦截）
-    video.src = video.src + '?v=' + new Date().getTime(); // 加时间戳避免缓存
-    video.load(); // 重新加载
-    
-    // 修复点击播放无响应（Edge/Chrome 手机版常见问题）
-    video.addEventListener('click', function(e) {
-      e.preventDefault();
-      if (video.paused) {
-        // 强制静音播放（Chromium 手机版必须）
-        video.muted = true;
-        video.play().catch(err => {
-          console.log('Chrome/Edge 播放修复:', err);
-          // 兜底：再次强制加载
-          video.load();
-          video.play();
-        });
-      } else {
-        video.pause();
-      }
-    });
-
-    // 监听加载失败，自动重试
-    video.addEventListener('error', function() {
-      video.src = 'https://cdn.jsdelivr.net/gh/scy-quantum/Chi/slits_Chi.mp4?retry=' + Math.random();
+  <script>
+    // 等待页面完全加载，强制触发视频渲染
+    window.onload = function() {
+      const video = document.getElementById('chromium-video');
+      
+      // 1. 强制重置视频源（避免缓存导致渲染失败）
+      video.src = 'https://cdn.jsdelivr.net/gh/scy-quantum/Chi/slits_Chi.mp4?v=' + Date.now();
+      
+      // 2. 强制设置尺寸（修复手机端尺寸计算异常）
+      video.width = document.body.clientWidth - 20; // 适配屏幕宽度（减边距）
+      video.height = (video.width * 9) / 16; // 16:9 比例，避免高度为0
+      
+      // 3. 强制加载+渲染
       video.load();
-    });
-  });
-</script>
+      video.style.display = 'block'; // 再次强制显示
+      
+      // 4. 修复点击播放（兼容Chromium内核）
+      video.addEventListener('click', function(e) {
+        e.stopPropagation(); // 防止点击事件被外层拦截
+        if (video.paused) {
+          video.muted = true;
+          video.play().catch(err => {
+            console.log('播放重试:', err);
+            video.load();
+            video.play();
+          });
+        } else {
+          video.pause();
+        }
+      });
+
+      // 5. 监听加载状态，打印日志（方便排查）
+      video.addEventListener('loadedmetadata', function() {
+        console.log('视频元数据加载成功，尺寸：', video.videoWidth, 'x', video.videoHeight);
+      });
+      video.addEventListener('error', function(err) {
+        console.log('视频加载错误:', err);
+        // 错误时手动显示提示
+        video.outerHTML += '<p style="color:red;">视频加载失败，请刷新重试</p>';
+      });
+    };
+  </script>
     
 </div>
 
