@@ -543,24 +543,62 @@
 
 <div class="img-box">
 
+<!-- 核心：用 jsDelivr 加速 GitHub 视频（绕过加载限制）+ 适配 Chromium 内核 -->
 <video 
-  src="https://scy-quantum.github.io/Chi/slits_Chi.mp4" 
+  id="chromium-video"
+  src="https://cdn.jsdelivr.net/gh/scy-quantum/Chi/slits_Chi.mp4"  <!-- 替换成加速链接 -->
   controls
   playsinline
   webkit-playsinline
   muted
-  preload="metadata"
+  preload="auto"
   width="100%"
   style="
     max-width: 100%;
     height: auto;
     display: block;
-    z-index: 999;
-    pointer-events: auto;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+    background: #000;
   "
 >
   您的浏览器不支持视频播放
 </video>
+
+<!-- 针对 Chromium 内核的强制加载脚本 -->
+<script>
+  // 等待页面完全加载
+  document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('chromium-video');
+    
+    // 强制重置视频加载状态（修复 Chromium 内核的缓存拦截）
+    video.src = video.src + '?v=' + new Date().getTime(); // 加时间戳避免缓存
+    video.load(); // 重新加载
+    
+    // 修复点击播放无响应（Edge/Chrome 手机版常见问题）
+    video.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (video.paused) {
+        // 强制静音播放（Chromium 手机版必须）
+        video.muted = true;
+        video.play().catch(err => {
+          console.log('Chrome/Edge 播放修复:', err);
+          // 兜底：再次强制加载
+          video.load();
+          video.play();
+        });
+      } else {
+        video.pause();
+      }
+    });
+
+    // 监听加载失败，自动重试
+    video.addEventListener('error', function() {
+      video.src = 'https://cdn.jsdelivr.net/gh/scy-quantum/Chi/slits_Chi.mp4?retry=' + Math.random();
+      video.load();
+    });
+  });
+</script>
     
 </div>
 
