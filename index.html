@@ -570,60 +570,20 @@
 <div class="img-box">
 
 <video 
-    id="chromium-video"
-    src="https://cdn.jsdelivr.net/gh/scy-quantum/Chi/slits_Chi.mp4"
-    controls
-    playsinline
-    webkit-playsinline
-    x5-playsinline
-    muted
-    preload="auto"
-  >
-    您的浏览器不支持视频播放
-  </video>
-
-  <script>
-    // 等待页面完全加载，强制触发视频渲染
-    window.onload = function() {
-      const video = document.getElementById('chromium-video');
-      
-      // 1. 强制重置视频源（避免缓存导致渲染失败）
-      video.src = 'https://cdn.jsdelivr.net/gh/scy-quantum/Chi/slits_Chi.mp4?v=' + Date.now();
-      
-      // 2. 强制设置尺寸（修复手机端尺寸计算异常）
-      video.width = document.body.clientWidth - 20; // 适配屏幕宽度（减边距）
-      video.height = (video.width * 9) / 16; // 16:9 比例，避免高度为0
-      
-      // 3. 强制加载+渲染
-      video.load();
-      video.style.display = 'block'; // 再次强制显示
-      
-      // 4. 修复点击播放（兼容Chromium内核）
-      video.addEventListener('click', function(e) {
-        e.stopPropagation(); // 防止点击事件被外层拦截
-        if (video.paused) {
-          video.muted = true;
-          video.play().catch(err => {
-            console.log('播放重试:', err);
-            video.load();
-            video.play();
-          });
-        } else {
-          video.pause();
-        }
-      });
-
-      // 5. 监听加载状态，打印日志（方便排查）
-      video.addEventListener('loadedmetadata', function() {
-        console.log('视频元数据加载成功，尺寸：', video.videoWidth, 'x', video.videoHeight);
-      });
-      video.addEventListener('error', function(err) {
-        console.log('视频加载错误:', err);
-        // 错误时手动显示提示
-        video.outerHTML += '<p style="color:red;">视频加载失败，请刷新重试</p>';
-      });
-    };
-  </script>
+  src="/videos/slits_Chi.mp4"
+  controls
+  playsinline
+  webkit-playsinline
+  muted
+  preload="metadata"
+  style="
+    width: 100% !important;
+    height: auto !important;
+    z-index: 9999 !important;
+    position: relative !important;
+    pointer-events: auto !important;
+  "
+></video>
     
 </div>
 
