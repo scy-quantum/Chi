@@ -116,21 +116,35 @@ li {
 }
 
 
-  /* Flexible image container for side-by-side layouts */
-        .flex-images {
-            display: flex;
-            gap: 60px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .flex-images img {
-            flex: 1;
-            min-width: 280px;
-            max-width: 100%;
-            height: auto;
-        }
+	
+* 讓容器在手機上改為垂直排列 左邊圖，右邊多行文字*/
+.container {
+  display: flex;
+  flex-wrap: wrap;  /* 手機時自動換行 */
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* 圖片自動縮放不超出螢幕 */
+.container img {
+  max-width: 100%;
+  height: auto;
+  flex: 1 1 280px; /* 最小寬度280px，低於此就換行 */
+}
+
+/* 文字區塊彈性填滿 */
+.text {
+  flex: 2 1 200px;
+}
+
+/* 保持原有縮排 */
+.indent-p {
+  margin: 0 0 12px 0;
+}
+
+
+
+
 	
 /* 链接 */
 a {
