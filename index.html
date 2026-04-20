@@ -115,6 +115,23 @@ li {
     height: auto;
 }
 
+
+  /* Flexible image container for side-by-side layouts */
+        .flex-images {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .flex-images img {
+            flex: 1;
+            min-width: 280px;
+            max-width: 100%;
+            height: auto;
+        }
+	
 /* 链接 */
 a {
     color: #3498db;
