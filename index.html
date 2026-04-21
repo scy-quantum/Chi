@@ -98,6 +98,33 @@ li {
     margin: 30px 0;
 }
 
+	
+
+/* 两张图并排容器 */
+.img-row {
+  display: flex;
+  gap: 20px; /* 两张图间距 */
+  align-items: stretch; /* 子元素上下拉伸铺满高度 */
+}
+
+/* 左侧图：等比、上下完全贴齐右图 */
+.img-left {
+  width: 280px;   /* 左侧你要的宽度，自己改 */
+  height: 100%;   /* 高度强制继承右图高度 */
+  object-fit: contain; /* 核心：等比缩放、绝不压扁变形 */
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
+/* 右侧图：固定尺寸、作为高度基准 */
+.img-right {
+  width: 380px;   /* 右图固定宽 */
+  height: auto;   /* 右图自身正常等比，决定整体高度 */
+  border-radius: 8px;
+}
+	
+
+	
 /* 多图并排 */
 .flex-images {
     display: flex;
@@ -334,9 +361,9 @@ audio {
 <p>小孩不想上学时，跟妈妈说發燒頭疼了，他的體温就真的高起来了。<br>
 醫生開维他命给你，你以为是藥，结果你的病好起来了。 </p>
 
-<div class="flex-images">
-  <img src="images/08fever.jpg" alt="发烧">
-  <img src="images/09placebo.jpg" alt="安慰剂效应">  
+<div class="img-row">
+  <img class="img-left" src="images/08fever.jpg" alt="发烧">
+  <img class="img-right" src="images/09placebo.jpg" alt="安慰剂效应">  
 </div>
 
 <p>你的身體是一個宇宙，而你，就是这個宇宙的神。<br>
