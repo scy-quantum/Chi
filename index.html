@@ -144,8 +144,8 @@ li {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: flex-start; /*左右靠邊*/
+    align-items: center; /*垂直上下居中*/
 }
 
 .flex-images img {
@@ -156,6 +156,19 @@ li {
 	object-fit: cover;  /* 不变形 */
 }
 
+	/* 手机端：图片贴满左右边缘 + 靠左 */
+@media (max-width: 768px) {
+  .flex-images {
+    gap: 12px; /* 手机间距缩小一点 */
+  }
+  .flex-images img {
+    min-width: 100%; /* 关键：手机变全屏宽度 */
+    margin-left: 0; /* 确保靠左 */
+  }
+}
+
+
+	
 /* ========== 修复：container 左图高度不高于右边文字 ========== */
 .container {
   display: flex;
