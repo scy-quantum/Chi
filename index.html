@@ -122,6 +122,20 @@ li {
   height: auto;   /* 右图自身正常等比，决定整体高度 */
   border-radius: 8px;
 }
+/* ====================== */
+/* 手机端：自动变上下排列 */
+/* ====================== */
+@media (max-width: 768px) {
+  .img-row {
+    flex-direction: column; /* 关键：变垂直 */
+  }
+
+  .img-left,
+  .img-right {
+    width: 100%; /* 手机端图全屏 */
+    height: auto; /* 手机端恢复正常比例 */
+  }
+}
 	
 
 	
