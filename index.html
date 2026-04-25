@@ -116,8 +116,9 @@ li {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    border: 1px solid #000000;  /* 纯黑边框 */
     display: block;
+	margin: 0;
 }
 
 .divider {
@@ -132,6 +133,7 @@ li {
   display: flex;
   gap: 20px; /* 两张图间距 */
   align-items: stretch; /* 子元素上下拉伸铺满高度 */
+
 }
 
 /* 左侧图：等比、上下完全贴齐右图 */
@@ -141,6 +143,7 @@ li {
   object-fit: contain; /* 核心：等比缩放、绝不压扁变形 */
   flex-shrink: 0;
   border-radius: 8px;
+  border: 1px solid #000000;  /* 纯黑边框 */
 }
 
 /* 右侧图：固定尺寸、作为高度基准 */
@@ -148,6 +151,7 @@ li {
   width: 380px;   /* 右图固定宽 */
   height: auto;   /* 右图自身正常等比，决定整体高度 */
   border-radius: 8px;
+  border: 1px solid #000000;  /* 纯黑边框 */
 }
 /* ====================== */
 /* 手机端：自动变上下排列 */
@@ -172,7 +176,7 @@ li {
     gap: 50px;
     flex-wrap: wrap;
     justify-content: flex-start; /*左右靠邊*/
-    align-items: center; /*垂直上下居中*/
+    align-items: center; /*垂直上下居中*/	
 }
 
 .flex-images img {
@@ -181,6 +185,7 @@ li {
     max-width: 100%;
     height: auto;
 	object-fit: cover;  /* 不变形 */
+	border: 1px solid #000000;  /* 纯黑边框 */
 }
 
 	/* 手机端：图片贴满左右边缘 + 靠左 */
