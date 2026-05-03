@@ -318,26 +318,27 @@ audio {
         font-size: 15px;
     }
 
-    /* 布局：电脑左右 → 手机上下 + 文字靠左 */
-    .img-row,
-    .flex-images,
-    .container,
-    .card-media
-	.text {
-        flex-direction: column;
-        text-align: left;
-        gap: 20px; /* 统一间距，更美观 */
-    }
+   /* 布局：电脑左右 → 手机上下 + 文字靠左 */
+.img-row,
+.flex-images,
+.container,
+.card-media {
+    flex-direction: column;
+    text-align: left;
+    gap: 20px;
+}
 
-    /* 图片：全屏自适应，不变形 */
-    .img-left,
-    .img-right,
-    .container img,
-    .gif {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
-    }
+/* 图片/GIF：自适应全屏 */
+.img-left,
+.img-right,
+.container img,
+.card-media img,
+.gif {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
 }
 
 
